@@ -10,7 +10,7 @@
 ---
 
 > [!IMPORTANT]
-> **Notice:** Logic update for number blocking validation on Gateway 1 addresses the recurring Boom 400 error 'Unable to resolve PN JID for LID: xxx@lid' when receiving private messages from WhatsApp accounts utilizing Linked Identity (LID) formats.
+> **Notice:** Self-contained guard logic implemented directly inside `handler.js` resolves the recurring Boom 400 error 'Unable to resolve PN JID for LID: xxx@lid' when receiving private messages from WhatsApp accounts utilizing Linked Identity (LID) formats, without modifying or adding external files.
 
 ---
 
@@ -24,10 +24,11 @@
 ---
 
 ### 2. What was Fixed?
-* Introduced the isBlockedNumber helper in handler.js, ensuring country calling code prefix matching is strictly confined to real phone JIDs (@s.whatsapp.net) and never applied to random @lid strings.
-* Replaced all direct client.updateBlockStatus calls in handler.js with safeUpdateBlockStatus from lib/system/block-status.js for queued, error-resilient execution.
-* Upgraded lib/system/block-status.js to resolve LIDs to phone numbers via database and contact cache. If unresolved, block attempts are safely skipped rather than causing Baileys to throw exceptions.
-* Hardened the global exception catch filter in handler.js to prevent unresolvable LID rejections from sending error responses to users or polluting system logs.
+* The entire security mechanism is 100% self-contained directly within the existing `handler.js` file, without introducing or editing any other auxiliary files.
+* Introduced the `isBlockedNumber` helper in `handler.js`, ensuring country calling code prefix matching is strictly confined to real phone JIDs (@s.whatsapp.net) and never evaluated against opaque @lid strings.
+* Added an inline `safeBlockUser` helper in `handler.js` that automatically skips unmapped @lid targets and isolates calls with try-catch to prevent uncaught Boom 400 exceptions.
+* Replaced all direct blocking invocations in `handler.js` with `safeBlockUser(client, m.sender)`.
+* Hardened the global exception catch filter in `handler.js` to filter out unresolvable LID errors so they neither trigger error responses to users nor pollute system logs.
 
 ---
 
@@ -39,4 +40,4 @@
 ---
 
 ### 4. The Result
-The LID resolution error on Gateway 1 has been completely resolved. The fix has also been synchronized across Gateway 2 and Gateway 3 for comprehensive cluster reliability.
+The LID resolution error on Gateway 1 has been completely resolved via self-contained protection inside `handler.js`. The same safeguard has been applied across Gateway 2 and Gateway 3 for unified cluster reliability.
