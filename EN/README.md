@@ -3,6 +3,8 @@
 Select a documentation category below:
 
 ### Bug Fixes (Fixed)
+* [**updates/2026-11-10-triple-safeguard-bot-responsiveness.md**](./updates/2026-11-10-triple-safeguard-bot-responsiveness.md)
+  Deployment of Triple Safeguard architecture ensuring online bots always process incoming messages without silent drops.
 * [**Fixed/error-502-handling.md**](./Fixed/error-502-handling.md)
   Fix for 502 Bad Gateway technical error messages on dashboard and terminal.
 * [**Fixed/store-list-guide.md**](./Fixed/store-list-guide.md)

@@ -3,6 +3,8 @@
 Pilih kategori dokumentasi di bawah ini:
 
 ### Perbaikan Masalah (Fixed)
+* [**updates/2026-11-10-triple-safeguard-bot-responsiveness.md**](./updates/2026-11-10-triple-safeguard-bot-responsiveness.md)
+  Penerapan arsitektur Triple Safeguard untuk memastikan bot online selalu merespon pesan dan tidak mengalami silent freeze.
 * [**Fixed/pesan-error-502.md**](./Fixed/pesan-error-502.md)
   Perbaikan keterangan error 502 pada dashboard dan terminal agar ramah dan mudah dipahami pengguna.
 * [**Fixed/panduan-tambah-list.md**](./Fixed/panduan-tambah-list.md)
