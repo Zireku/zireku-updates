@@ -1,4 +1,4 @@
-# Initial Empty State and Free Bot Onboarding Dashboard on Gateway 2 and Gateway 3
+# Initial Empty State Dashboard Refinements on Gateway 2 and Gateway 3
 
 ![Category](https://img.shields.io/badge/Category-Web_Interface-6366f1?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Resolved-22c55e?style=for-the-badge)
@@ -10,34 +10,32 @@
 ---
 
 > [!IMPORTANT]
-> **Notice:** Dashboard interface architectural update for Gateway 2 and Gateway 3 (Free cluster). In the initial state when a user has not yet created or connected a WhatsApp bot, the dashboard now displays a clean, informative empty onboarding state without rendering inactive bot controls or empty metrics. It features a Free Bot Welcome Hero Card and 4 direct navigation cards: Home, Bot List, User Guide, and Bot Rental.
+> **Notice:** Interface refinements for the initial empty dashboard on Gateway 2 and Gateway 3. When users do not yet have an active WhatsApp bot, the dashboard presents a clean, well-spaced layout. The title is updated to 'Create & Connect WhatsApp Bot Easily', removing 'Free/Gratis' references, server node displays dynamically as 'Server 2' or 'Server 3', green highlights are removed in favor of a sleek monochrome scheme, overlapping watermark icons are eliminated, and the 4 navigation cards (Home, Bot List, Guide, Rental) feature generous gap spacing.
 
 ---
 
 ### 1. What was the Issue?
-* On Gateway 2 and Gateway 3, when a new user logged in without an active bot, the dashboard unconditionally rendered all bot management widgets (Live Metrics, ControlBox, Main Features, and Top Rankings) showing blank or uninitialized placeholders.
-* New users required clear onboarding guidance indicating that they need to create their free bot first before bot control panels become functional.
-* Clear visual navigation to the 4 available public pages (Home, Bot List, User Guide, and Bot Rental) was needed directly on the empty initial dashboard.
+* The 4 navigation cards (Home, Bot List, Guide, Rental) were touching each other without proper gutter spacing.
+* Large watermark background icons bled through the text content inside the cards.
+* Green badges and indicators were present, along with references to 'Public Free Gateway' and 'Free WhatsApp Bot'.
 
 ---
 
 ### 2. What was Fixed?
-* Implemented reactive isBotReady conditional logic in pages/dashboard/index.vue on Gateway 2 and Gateway 3 based on actual session existence (connection status, phone number, JID, and needs_connect flag).
-* Added a Free Welcome Hero Card featuring QR/code pairing highlights, ready-to-use command catalog summaries, and a prominent "Create Bot Now" action button that launches CreateBotModal.
-* Built a responsive 4-card navigation grid showcasing available pages (Home, Bot List, User Guide, and Bot Rental) styled with dark card backgrounds and borders matching Statistic.vue.
-* Encapsulated active bot management widgets (6-column Live Metrics, ControlBox, Main Features, Account Info, and Top Rankings) inside a conditional template that renders only once the bot is connected.
-* Optimized onMounted lifecycle and socket event listeners so heavy bot metric queries only execute when a bot actually exists.
-* Refined DashboardBotLock so the main dashboard landing page (/dashboard) is accessible without obstruction during initial onboarding.
+* Replaced navigation card layout with CSS Grid (.free-nav-grid) featuring gap: 1.25rem and card padding to ensure clean spacing between cards.
+* Removed background watermark icons from navigation cards to prevent text obstruction.
+* Eliminated green highlights from all welcome badges, pill tags, and status dots, replacing them with clean monochrome styling.
+* Updated server type designation from 'Public Free Gateway' to dynamic server node labels ('Server 2' on GW2 and 'Server 3' on GW3).
+* Updated primary title to 'Create & Connect WhatsApp Bot Easily' and eliminated all 'Free/Gratis' wording.
 
 ---
 
 ### 3. How does this Affect Users?
-* New users on Gateway 2 and Gateway 3 enjoy an intuitive, clutter-free onboarding experience.
-* Prevents confusion caused by premature display of bot controls before any WhatsApp instance is paired.
-* Allows quick navigation to Home, Bot List, User Guide, and Bot Rental directly from the dashboard view.
-* Seamlessly transitions into full bot management mode the moment a bot is created.
+* Users experience a visually balanced, comfortable dashboard layout with distinct card boundaries.
+* Descriptions are clearly legible without background icon collision.
+* Visual aesthetics are unified with the system dark design system.
 
 ---
 
 ### 4. The Result
-Gateway 2 and Gateway 3 dashboards now feature a smooth onboarding flow while remaining 100% Free with zero subscription requirements, delivering a modern and structured user experience.
+Gateway 2 and Gateway 3 dashboards have been rebuilt with clean spacing, no green highlights, and zero text obstruction.
