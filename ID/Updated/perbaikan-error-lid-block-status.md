@@ -10,7 +10,7 @@
 ---
 
 > [!IMPORTANT]
-> **Pemberitahuan:** Pembaruan logika pengamanan pemblokiran nomor mandiri langsung di dalam `handler.js` mengatasi galat Boom 400 'Unable to resolve PN JID for LID: xxx@lid' saat bot menerima pesan pribadi dari akun WhatsApp yang menggunakan format pengenal identitas LID tanpa perlu mengubah atau menambah file eksternal lain.
+> **Pemberitahuan:** Pembaruan logika pengamanan pemblokiran nomor mandiri langsung di dalam `handler.js` mengatasi galat Boom 400 'Unable to resolve PN JID for LID: xxx@lid' saat bot menerima pesan pribadi dari akun WhatsApp yang menggunakan format pengenal identitas LID. File non-standar `block-status.js` telah dihapus sepenuhnya sesuai arsitektur upstream Neoxr Bot v5.
 
 ---
 
@@ -24,20 +24,23 @@
 ---
 
 ### 2. Apa yang Diperbaiki?
-* Seluruh pengamanan dibuat 100% mandiri (self-contained) langsung di dalam file `handler.js` yang sudah ada, tanpa membuat atau mengubah file luar lainnya.
-* Menambahkan fungsi pembantu `isBlockedNumber` pada `handler.js` yang secara khusus hanya memeriksa awalan kode negara pada nomor telepon berformat @s.whatsapp.net, dan secara otomatis mengecualikan pengenal @lid yang bukan nomor telepon.
-* Menambahkan fungsi proteksi `safeBlockUser` langsung di dalam `handler.js` yang membungkus pemanggilan blokir dengan proteksi aman: melewati pemblokiran jika target merupakan @lid tanpa pemetaan nomor telepon, serta menangani try-catch agar tidak melempar exception Boom 400.
-* Mengganti seluruh titik panggilan blokir langsung pada `handler.js` menggunakan `safeBlockUser(client, m.sender)`.
-* Memperketat penanganan galat catch pada `handler.js` agar galat terkait LID unresolvable disaring sehingga tidak menyebabkan pengiriman pesan galat ke pengguna atau membanjiri log PM2.
+* Hasil pengecekan pada upstream Neoxr Bot v5 (5.0-ESM) mengonfirmasi bahwa file `lib/system/block-status.js` memang tidak ada sama sekali di repositori upstream neoxr-bot.
+* File non-standar `lib/system/block-status.js` telah dihapus sepenuhnya dari Gateway 1, 2, dan 3.
+* Seluruh dependensi yang sebelumnya mengimpor file tersebut (`plugins/owner/manager.js`, `plugins/_events/anti_bug.js`, dan `lib/system/listeners-extra.js`) telah dikembalikan memanggil fungsi Baileys langsung (`client.updateBlockStatus`) sebagaimana standar upstream.
+* Logika perlindungan LID dibuat 100% mandiri di dalam `handler.js`:
+  - Fungsi `isBlockedNumber` menyaring nomor agar format @lid tidak diuji terhadap kode negara.
+  - Fungsi `safeBlockUser` membungkus pemanggilan blokir dengan isolasi try-catch dan mengabaikan LID tanpa nomor telepon.
+  - Penanganan galat global catch pada `handler.js` diperkuat menyaring galat LID unresolvable.
 
 ---
 
 ### 3. Apa Efeknya ke User?
 * Pengguna yang menggunakan WhatsApp dengan pengenal akun berformat LID kini dapat mengirim pesan dan menggunakan bot secara normal tanpa diblokir secara keliru.
 * Bot tidak lagi mengirim balasan pesan error kepada pengguna ketika menerima interaksi dari akun bertipe LID.
-* Layanan gateway berjalan stabil, bersih dari log galat Boom 400, dan pemblokiran nomor spam tetap bekerja akurat untuk nomor virtual asli.
+* Arsitektur kode menjadi bersih, bebas dari file utilitas asing yang tidak ada di upstream Neoxr v5.
+* Layanan gateway berjalan stabil dan bersih dari log galat Boom 400.
 
 ---
 
 ### 4. Hasilnya
-Galat penolakan blokir LID pada Gateway 1 telah teratasi sepenuhnya dengan pengamanan mandiri di dalam `handler.js`. Penyesuaian serupa juga telah diamankan di Gateway 2 dan Gateway 3 untuk pencegahan menyeluruh di seluruh cluster gateway.
+Galat penolakan blokir LID pada Gateway 1 telah teratasi sepenuhnya. File `block-status.js` telah dihapus bersih dan seluruh penanganan disatukan di `handler.js` di seluruh cluster Gateway 1, Gateway 2, dan Gateway 3.
