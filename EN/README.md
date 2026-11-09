@@ -3,6 +3,12 @@
 Select a documentation category below:
 
 ### Bug Fixes (Fixed)
+* [**Fixed/error-502-handling.md**](./Fixed/error-502-handling.md)
+  Fix for 502 Bad Gateway technical error messages on dashboard and terminal.
+* [**Fixed/store-list-guide.md**](./Fixed/store-list-guide.md)
+  Interactive guide for store list addition (.addlist) with syntax examples and catalog photo saving.
+* [**Fixed/server-plan-migration.md**](./Fixed/server-plan-migration.md)
+  Automatic paid plan (Plus/Pro) and recovery PIN protection during cross-server migrations.
 * [**Fixed/group-admin-features.md**](./Fixed/group-admin-features.md)
   Fix for group admin features like .antikudeta, antilink, and other admin commands.
 * [**Fixed/bot-response-speed.md**](./Fixed/bot-response-speed.md)
