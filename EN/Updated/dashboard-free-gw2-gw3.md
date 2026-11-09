@@ -54,7 +54,11 @@
    * Node type, `99.9%` uptime, and `Available` slots formatted in crisp white typography.
    * Bottom pill updated to `Cluster Ready` with transparent border and white glowing dot.
 
-4. **Header Vertical Spacing Refinement:**
+4. **Light Mode Dynamic Contrast Adaptation:**
+   * Removed hardcoded 	ext-white from node title, robot icon, and spec table values (Server 2, 99.9%, Available).
+   * Replaced with theme-adaptive classes (ree-node-title and ree-spec-value) rendering dark slate (#0f172a) in light mode and white (#ffffff) in dark mode.
+
+5. **Header Vertical Spacing Refinement:**
    * Tightened margin below `UserProfileHeader` from `mb-4` to `mb-2`.
 
 ---
