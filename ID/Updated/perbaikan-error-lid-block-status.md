@@ -10,7 +10,7 @@
 ---
 
 > [!IMPORTANT]
-> **Pemberitahuan:** Pembaruan logika validasi pemblokiran nomor pada Gateway 1 mengatasi galat Boom 400 'Unable to resolve PN JID for LID: xxx@lid' saat bot menerima pesan pribadi dari akun WhatsApp yang menggunakan format pengenal identitas LID.
+> **Pemberitahuan:** Pembaruan logika pengamanan pemblokiran nomor mandiri langsung di dalam `handler.js` mengatasi galat Boom 400 'Unable to resolve PN JID for LID: xxx@lid' saat bot menerima pesan pribadi dari akun WhatsApp yang menggunakan format pengenal identitas LID tanpa perlu mengubah atau menambah file eksternal lain.
 
 ---
 
@@ -24,10 +24,11 @@
 ---
 
 ### 2. Apa yang Diperbaiki?
-* Menambahkan fungsi pembantu isBlockedNumber pada handler.js yang secara khusus hanya memeriksa awalan kode negara pada nomor telepon berformat @s.whatsapp.net, dan secara otomatis mengecualikan pengenal @lid yang bukan nomor telepon.
-* Mengganti seluruh panggilan langsung client.updateBlockStatus pada handler.js dengan safeUpdateBlockStatus dari lib/system/block-status.js agar seluruh operasi pemblokiran dieksekusi secara aman dengan penanganan antrean dan proteksi galat.
-* Memperbarui lib/system/block-status.js untuk mencoba menyelesaikan LID ke nomor telepon asli melalui database dan cache kontak. Jika pemetaan nomor tidak ditemukan, proses pemblokiran diskip secara aman tanpa memicu galat uncaught pada Baileys.
-* Memperketat penanganan galat catch pada handler.js agar galat terkait LID unresolvable tidak menyebabkan pengiriman pesan galat ke pengguna atau membanjiri log PM2.
+* Seluruh pengamanan dibuat 100% mandiri (self-contained) langsung di dalam file `handler.js` yang sudah ada, tanpa membuat atau mengubah file luar lainnya.
+* Menambahkan fungsi pembantu `isBlockedNumber` pada `handler.js` yang secara khusus hanya memeriksa awalan kode negara pada nomor telepon berformat @s.whatsapp.net, dan secara otomatis mengecualikan pengenal @lid yang bukan nomor telepon.
+* Menambahkan fungsi proteksi `safeBlockUser` langsung di dalam `handler.js` yang membungkus pemanggilan blokir dengan proteksi aman: melewati pemblokiran jika target merupakan @lid tanpa pemetaan nomor telepon, serta menangani try-catch agar tidak melempar exception Boom 400.
+* Mengganti seluruh titik panggilan blokir langsung pada `handler.js` menggunakan `safeBlockUser(client, m.sender)`.
+* Memperketat penanganan galat catch pada `handler.js` agar galat terkait LID unresolvable disaring sehingga tidak menyebabkan pengiriman pesan galat ke pengguna atau membanjiri log PM2.
 
 ---
 
@@ -39,4 +40,4 @@
 ---
 
 ### 4. Hasilnya
-Galat penolakan blokir LID pada Gateway 1 telah teratasi sepenuhnya. Penyesuaian juga telah diterapkan ke Gateway 2 dan Gateway 3 untuk pencegahan menyeluruh di seluruh cluster gateway.
+Galat penolakan blokir LID pada Gateway 1 telah teratasi sepenuhnya dengan pengamanan mandiri di dalam `handler.js`. Penyesuaian serupa juga telah diamankan di Gateway 2 dan Gateway 3 untuk pencegahan menyeluruh di seluruh cluster gateway.
