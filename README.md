@@ -25,6 +25,7 @@
 
 ## Ringkasan Peningkatan (System Updates)
 
+* **Tampilan Mobile Modal VIP**: Menyesuaikan ukuran tombol Bayar Sekarang, tombol Lanjut koneksi, dan badge Menunggu Pembayaran agar lebih ramping dan tidak terpotong pada smartphone.
 * **Daya Tampung Server**: Peningkatan kapasitas server agar kuat menampung ratusan bot sekaligus dengan stabil tanpa membuat server lambat.
 * **Anti Delay Permanen**: Pemasangan sistem anti delay permanen agar bot utama maupun bot sewaan (subbot) selalu membalas pesan seketika.
 * **Kompatibilitas WhatsApp**: Pembaruan sambungan ke versi WhatsApp Web terbaru agar bot tidak mudah terputus dan login pairing code lancar.
