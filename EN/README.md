@@ -21,6 +21,8 @@ Select a documentation category below:
 ---
 
 ### System Improvements (Updated)
+* [**Updated/performance-sessions-reconnect-response.md**](./Updated/performance-sessions-reconnect-response.md)
+  Enhancements for session lifecycle, auto-healer reconnect reliability, and zero-delay message responsiveness.
 * [**updates/2026-11-10-silence-background-logs.md**](./updates/2026-11-10-silence-background-logs.md)
   Silencing background startup notices for anti-delay and cache-patch modules to maintain clean console output.
 * [**Updated/vip-mobile-interface.md**](./Updated/vip-mobile-interface.md)

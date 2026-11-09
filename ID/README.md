@@ -21,6 +21,8 @@ Pilih kategori dokumentasi di bawah ini:
 ---
 
 ### Peningkatan Sistem (Updated)
+* [**Updated/performa-sesi-reconnect-respon.md**](./Updated/performa-sesi-reconnect-respon.md)
+  Peningkatan performa sesi, reconnect auto-healer, dan respon pesan instan tanpa silent freeze di semua gateway.
 * [**updates/2026-11-10-silence-background-logs.md**](./updates/2026-11-10-silence-background-logs.md)
   Penyembunyian log startup latar belakang anti-delay dan cache-patch agar terminal dan keluaran log tetap bersih.
 * [**Updated/tampilan-mobile-vip.md**](./Updated/tampilan-mobile-vip.md)
