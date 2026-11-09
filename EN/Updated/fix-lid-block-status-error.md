@@ -10,7 +10,7 @@
 ---
 
 > [!IMPORTANT]
-> **Notice:** Self-contained guard logic implemented directly inside `handler.js` resolves the recurring Boom 400 error 'Unable to resolve PN JID for LID: xxx@lid' when receiving private messages from WhatsApp accounts utilizing Linked Identity (LID) formats, without modifying or adding external files.
+> **Notice:** Self-contained guard logic implemented directly inside `handler.js` resolves the recurring Boom 400 error 'Unable to resolve PN JID for LID: xxx@lid' when receiving private messages from WhatsApp accounts utilizing Linked Identity (LID) formats. Non-standard file `block-status.js` has been removed completely in alignment with upstream Neoxr Bot v5 architecture.
 
 ---
 
@@ -24,20 +24,23 @@
 ---
 
 ### 2. What was Fixed?
-* The entire security mechanism is 100% self-contained directly within the existing `handler.js` file, without introducing or editing any other auxiliary files.
-* Introduced the `isBlockedNumber` helper in `handler.js`, ensuring country calling code prefix matching is strictly confined to real phone JIDs (@s.whatsapp.net) and never evaluated against opaque @lid strings.
-* Added an inline `safeBlockUser` helper in `handler.js` that automatically skips unmapped @lid targets and isolates calls with try-catch to prevent uncaught Boom 400 exceptions.
-* Replaced all direct blocking invocations in `handler.js` with `safeBlockUser(client, m.sender)`.
-* Hardened the global exception catch filter in `handler.js` to filter out unresolvable LID errors so they neither trigger error responses to users nor pollute system logs.
+* Inspection of upstream Neoxr Bot v5 (5.0-ESM branch) confirmed that `lib/system/block-status.js` does not exist anywhere in official upstream neoxr-bot.
+* The non-standard file `lib/system/block-status.js` was removed completely from Gateway 1, 2, and 3.
+* All plugins previously importing it (`plugins/owner/manager.js`, `plugins/_events/anti_bug.js`, and `lib/system/listeners-extra.js`) now invoke native Baileys functions (`client.updateBlockStatus`) following official upstream patterns.
+* LID safety guards are 100% self-contained inside `handler.js`:
+  - `isBlockedNumber` ensures country dial prefix matching strictly targets phone JIDs and skips @lid strings.
+  - `safeBlockUser` wraps block operations in an isolated try-catch and skips unmapped LIDs.
+  - Global catch filter in `handler.js` suppresses unresolvable LID warnings.
 
 ---
 
 ### 3. How does this Affect Users?
 * Legitimate WhatsApp accounts communicating via LID can now interact with the bot normally without being erroneously blocked.
 * The bot no longer issues spurious error replies when receiving messages from LID-based senders.
-* Gateway stability is preserved, eliminating Boom 400 log floods while retaining accurate blocking for genuine virtual spam numbers.
+* Codebase architecture is streamlined and aligned with upstream Neoxr Bot v5 specifications.
+* Gateway stability is preserved, eliminating Boom 400 log floods.
 
 ---
 
 ### 4. The Result
-The LID resolution error on Gateway 1 has been completely resolved via self-contained protection inside `handler.js`. The same safeguard has been applied across Gateway 2 and Gateway 3 for unified cluster reliability.
+The LID resolution error on Gateway 1 has been completely resolved. File `block-status.js` was cleanly deleted, and all block protection logic is consolidated directly in `handler.js` across Gateway 1, Gateway 2, and Gateway 3.
