@@ -12,8 +12,11 @@
 
 ---
 
-## Ringkasan Perbaikan (Fixed Issues)
+## Ringkasan Perbaikan Terbaru (Latest Fixed Issues)
 
+* **Keterangan Error 502 Dashboard**: Menghilangkan tampilan kode teknis mentah 502 pada tombol Mulai/kontrol dan menggantinya dengan keterangan ramah bahwa server sedang memproses antrean.
+* **Panduan Tambah List Toko (.addlist)**: Menyediakan panduan interaktif otomatis, contoh format pemisah (|), serta dukungan simpan foto katalog produk secara instan.
+* **Perlindungan Paket Pindah Server**: Menjamin paket Plus/Pro dan PIN tidak hilang saat pengguna memindahkan bot antar-gateway (Server 1, 2, dan 3).
 * **Fitur Admin Grup & Anti Kudeta**: Perbaikan perintah .antikudeta, antilink, dan perintah admin lainnya yang sebelumnya sempat tidak membalas pesan.
 * **Kecepatan Respon Bot**: Perbaikan respon bot yang sempat delay 2 sampai 4 menit, kini kembali membalas pesan secara instan (0 milidetik).
 * **Pemulihan Bot Offline**: Perbaikan bot yang sempat mati atau offline sendiri di dashboard, kini 349 bot sudah otomatis dihidupkan kembali.
