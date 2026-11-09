@@ -19,6 +19,8 @@ Select a documentation category below:
 ---
 
 ### System Improvements (Updated)
+* [**Updated/vip-mobile-interface.md**](./Updated/vip-mobile-interface.md)
+  Responsive optimization of VIP payment modal action buttons and badges for mobile devices.
 * [**Updated/server-capacity.md**](./Updated/server-capacity.md)
   Server capacity upgrade to reliably run hundreds of bots simultaneously.
 * [**Updated/permanent-anti-delay.md**](./Updated/permanent-anti-delay.md)
