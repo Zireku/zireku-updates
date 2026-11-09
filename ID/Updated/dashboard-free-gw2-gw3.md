@@ -54,7 +54,11 @@
    * Teks tipe node, persentase uptime (`99.9%`), dan ketersediaan slot (`Tersedia`) ditampilkan dalam warna putih bersih.
    * Pil status di bawah kotak spesifikasi diubah menjadi `Cluster Ready` dengan border putih transparan dan dot putih.
 
-4. **Penyesuaian Jarak Vertikal Header:**
+4. **Adaptasi Warna Mode Terang (Light Mode Contrast):**
+   * Menghapus kelas statis 	ext-white pada judul node, ikon robot, dan nilai tabel spesifikasi (Server 2, 99.9%, Tersedia).
+   * Menggantinya dengan kelas adaptif (ree-node-title dan ree-spec-value) yang otomatis berwarna gelap (#0f172a) pada mode terang dan putih (#ffffff) pada mode gelap.
+
+5. **Penyesuaian Jarak Vertikal Header:**
    * Margin bawah baris `UserProfileHeader` dirapatkan dari `mb-4` menjadi `mb-2`.
 
 ---
