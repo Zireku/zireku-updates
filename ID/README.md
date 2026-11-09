@@ -3,6 +3,12 @@
 Pilih kategori dokumentasi di bawah ini:
 
 ### Perbaikan Masalah (Fixed)
+* [**Fixed/pesan-error-502.md**](./Fixed/pesan-error-502.md)
+  Perbaikan keterangan error 502 pada dashboard dan terminal agar ramah dan mudah dipahami pengguna.
+* [**Fixed/panduan-tambah-list.md**](./Fixed/panduan-tambah-list.md)
+  Panduan interaktif perintah tambah list toko (.addlist) dengan contoh pengisian dan dukungan simpan foto katalog.
+* [**Fixed/migrasi-paket-server.md**](./Fixed/migrasi-paket-server.md)
+  Perlindungan otomatis paket berbayar (Plus/Pro) dan PIN pemulihan saat bot berpindah server cluster.
 * [**Fixed/fitur-admin-grup.md**](./Fixed/fitur-admin-grup.md)
   Perbaikan fitur admin grup seperti .antikudeta, antilink, dan perintah admin lainnya.
 * [**Fixed/kecepatan-respon-bot.md**](./Fixed/kecepatan-respon-bot.md)
