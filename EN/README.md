@@ -21,6 +21,8 @@ Select a documentation category below:
 ---
 
 ### System Improvements (Updated)
+* [**updates/2026-11-10-silence-background-logs.md**](./updates/2026-11-10-silence-background-logs.md)
+  Silencing background startup notices for anti-delay and cache-patch modules to maintain clean console output.
 * [**Updated/vip-mobile-interface.md**](./Updated/vip-mobile-interface.md)
   Responsive optimization of VIP payment modal action buttons and badges for mobile devices.
 * [**Updated/server-capacity.md**](./Updated/server-capacity.md)

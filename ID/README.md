@@ -21,6 +21,8 @@ Pilih kategori dokumentasi di bawah ini:
 ---
 
 ### Peningkatan Sistem (Updated)
+* [**updates/2026-11-10-silence-background-logs.md**](./updates/2026-11-10-silence-background-logs.md)
+  Penyembunyian log startup latar belakang anti-delay dan cache-patch agar terminal dan keluaran log tetap bersih.
 * [**Updated/tampilan-mobile-vip.md**](./Updated/tampilan-mobile-vip.md)
   Penyesuaian responsif ukuran tombol dan lencana modal pembayaran VIP pada perangkat smartphone.
 * [**Updated/daya-tampung-server.md**](./Updated/daya-tampung-server.md)
