@@ -19,6 +19,8 @@ Pilih kategori dokumentasi di bawah ini:
 ---
 
 ### Peningkatan Sistem (Updated)
+* [**Updated/tampilan-mobile-vip.md**](./Updated/tampilan-mobile-vip.md)
+  Penyesuaian responsif ukuran tombol dan lencana modal pembayaran VIP pada perangkat smartphone.
 * [**Updated/daya-tampung-server.md**](./Updated/daya-tampung-server.md)
   Peningkatan kapasitas server agar kuat menampung ratusan bot sekaligus.
 * [**Updated/anti-delay-permanen.md**](./Updated/anti-delay-permanen.md)
